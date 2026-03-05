@@ -22,6 +22,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { 
   DropdownMenu, 
@@ -92,7 +93,7 @@ const courses = [
     instructor: "Mr. Ahmed Bello",
     rating: 4.9,
     reviewCount: 4500,
-   00,
+    students: 25000,
     price: "Free",
     thumbnail: "/courses/jamb.jpg",
     category: "Test Prep",
@@ -168,7 +169,7 @@ const categories = ["All", "Mathematics", "Science", "Computing", "Humanities", 
 const levels = ["All Levels", "Beginner", "Intermediate", "Advanced"];
 const durations = ["Any Duration", "Under 1 hour", "1-4 weeks", "1-3 months"];
 
-export default function CoursesPage() {
+function Courses() {
   const searchParams = useSearchParams();
   const [viewMode, setViewMode] = React.useState<"grid" | "list">("grid");
   const [selectedCategory, setSelectedCategory] = React.useState("All");
@@ -476,6 +477,14 @@ export default function CoursesPage() {
       </main>
     </div>
   );
+}
+
+export default function CoursesPage() {
+  return (
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <Courses />
+    </React.Suspense>
+  )
 }
 
 function FiltersContent({

@@ -24,7 +24,7 @@ import {
   LogOut,
   GraduationCap,
   Users,
-  Child
+  Baby
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -52,7 +52,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
+import { Separator }.from "@/components/ui/separator";
 
 // Subject data for mega-menu
 const subjects = [
@@ -306,25 +306,33 @@ export function Header() {
                     <DropdownMenuShortcut>⌘,</DropdownMenuShortcut>
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <HelpCircle className="mr-2 h-4 w-4" />
-                  Help Center
+                <DropdownMenuItem asChild>
+                  <Link href="/help">
+                    <HelpCircle className="mr-2 h-4 w-4" />
+                    Help Center
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="text-[#EF4444] focus:text-[#EF4444]">
-                  <LogOut className="mr-2 h-4 w-4" />
-                  Sign Out
+                <DropdownMenuItem className="text-[#EF4444] focus:text-[#EF4444]" asChild>
+                  <Link href="/">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Sign Out
+                  </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
             <div className="flex items-center gap-2">
-              <Button variant="ghost" className="text-sm font-medium">
-                Log in
-              </Button>
-              <Button className="bg-[#FF6B00] hover:bg-[#E56000] text-white text-sm font-medium">
-                Sign up
-              </Button>
+              <Link href="/login" passHref>
+                <Button variant="ghost" className="text-sm font-medium">
+                  Log in
+                </Button>
+              </Link>
+              <Link href="/signup" passHref>
+                <Button className="bg-[#FF6B00] hover:bg-[#E56000] text-white text-sm font-medium">
+                  Sign up
+                </Button>
+              </Link>
             </div>
           )}
 
@@ -457,7 +465,7 @@ export function Header() {
                       </SheetClose>
                       <SheetClose asChild>
                         <Link href="/for-parents" className="flex items-center gap-3 rounded-lg px-2 py-2 text-sm hover:bg-accent">
-                          <Child className="h-4 w-4" />
+                          <User className="h-4 w-4" />
                           For Parents
                         </Link>
                       </SheetClose>
@@ -474,10 +482,14 @@ export function Header() {
                     <>
                       <Separator className="my-2" />
                       <div className="px-2">
-                        <Button variant="outline" className="w-full justify-start text-[#EF4444] border-[#EF4444]/20 hover:bg-[#EF4444]/10">
-                          <LogOut className="mr-2 h-4 w-4" />
-                          Sign Out
-                        </Button>
+                        <SheetClose asChild>
+                            <Link href="/" className="w-full">
+                                <Button variant="outline" className="w-full justify-start text-[#EF4444] border-[#EF4444]/20 hover:bg-[#EF4444]/10">
+                                <LogOut className="mr-2 h-4 w-4" />
+                                Sign Out
+                                </Button>
+                            </Link>
+                        </SheetClose>
                       </div>
                     </>
                   )}

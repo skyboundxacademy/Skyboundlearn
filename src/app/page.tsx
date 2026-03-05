@@ -374,12 +374,16 @@ export default function HomePage() {
                 It's free to get started!
               </p>
               <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
-                <Button size="lg" variant="secondary" className="font-semibold">
-                  Create Free Account
-                </Button>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                  Explore Courses
-                </Button>
+                <Link href="/signup">
+                  <Button size="lg" variant="secondary" className="font-semibold">
+                    Create Free Account
+                  </Button>
+                </Link>
+                <Link href="/courses">
+                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                    Explore Courses
+                  </Button>
+                </Link>
               </div>
             </div>
             <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/10"></div>

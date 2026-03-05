@@ -79,3 +79,71 @@ export function LearnerSidebar({ collapsed = false, onToggle }: LearnerSidebarPr
                     </TooltipTrigger>
                     {collapsed && (
                       <TooltipContent side="right" className="font-medium">
+                        {item.label}
+                      </TooltipContent>
+                    )}
+                  </Tooltip>
+                );
+              })}
+            </nav>
+
+            <Separator className="my-4 mx-2" />
+
+            <nav className="space-y-1 px-2">
+              {bottomNavItems.map((item) => {
+                const isActive = pathname === item.href;
+                
+                return (
+                  <Tooltip key={item.href}>
+                    <TooltipTrigger asChild>
+                      <Link
+                        href={item.href}
+                        className={cn(
+                          "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+                          isActive 
+                            ? "bg-[#FF6B00]/10 text-[#FF6B00]" 
+                            : "text-[#64748B] hover:bg-[#F1F5F9] hover:text-[#0F172A]",
+                          collapsed && "justify-center px-2"
+                        )}
+                      >
+                        <item.icon className={cn("h-5 w-5 flex-shrink-0", isActive && "text-[#FF6B00]")} />
+                        {!collapsed && <span>{item.label}</span>}
+                      </Link>
+                    </TooltipTrigger>
+                    {collapsed && (
+                      <TooltipContent side="right" className="font-medium">
+                        {item.label}
+                      </TooltipContent>
+                    )}
+                  </Tooltip>
+                );
+              })}
+            </nav>
+          </ScrollArea>
+
+          {/* Collapse Toggle */}
+          <div className="border-t p-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              className={cn(
+                "w-full justify-center",
+                collapsed ? "px-2" : "px-3"
+              )}
+              onClick={onToggle}
+            >
+              {collapsed ? (
+                <ChevronRight className="h-4 w-4" />
+              ) : (
+                <>
+                  <ChevronLeft className="mr-2 h-4 w-4" />
+                  <span>Collapse</span>
+                </>
+              )}
+            </Button>
+          </div>
+        </div>
+      </aside>
+    </TooltipProvider>
+  );
+}
